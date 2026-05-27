@@ -73,8 +73,8 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative py-24 px-4">
-      <div className="mx-auto max-w-7xl">
+    <section id="contact" className="relative py-28 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl">
         {/* Section Title */}
         <motion.div
           className="text-center mb-16"
@@ -94,7 +94,7 @@ export default function Contact() {
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto rounded-full mt-4" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial="hidden"

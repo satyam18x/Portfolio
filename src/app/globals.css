@@ -21,12 +21,13 @@
   --glass-border: rgba(148, 163, 184, 0.1);
   --glow-blue: 0 0 30px rgba(59, 130, 246, 0.3);
   --glow-violet: 0 0 30px rgba(139, 92, 246, 0.3);
+  --section-padding: 7rem;
 }
 
 /* Global Resets */
-* {
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -37,12 +38,15 @@ html {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 /* Custom Scrollbar */
@@ -91,7 +95,7 @@ body {
 }
 
 .glass-strong {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -212,13 +216,52 @@ body {
   animation: spin-slow 20s linear infinite;
 }
 
+/* Star particle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
 /* ============================================
-   Section Styles
+   Section Styles — Proper Spacing & Separation
    ============================================ */
 
 section {
   position: relative;
 }
+
+/* Every section except hero gets a top separator line */
+section + section::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 900px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(59, 130, 246, 0.25),
+    rgba(139, 92, 246, 0.25),
+    transparent
+  );
+}
+
+/* Section background alternation for visual rhythm */
+section:nth-child(even) {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 23, 42, 0.4) 0%,
+    transparent 70%
+  );
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
 
 /* Card hover tilt - subtle */
 .tilt-card {
@@ -229,7 +272,10 @@ section {
   transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
 }
 
-/* Skill icon colors */
+/* ============================================
+   Skill Icon Colors
+   ============================================ */
+
 .icon-react { color: #61DAFB; }
 .icon-nextjs { color: #ffffff; }
 .icon-typescript { color: #3178C6; }
@@ -252,15 +298,11 @@ section {
 .icon-vite { color: #646CFF; }
 .icon-streamlit { color: #FF4B4B; }
 
-/* Star particle */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
-}
-
 /* Custom Tech Card Hover Glowing Border & Background */
 .tech-card {
-  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .tech-card:hover {
