@@ -1,0 +1,192 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiRedux,
+  SiHtml5,
+  SiCss,
+  SiNodedotjs,
+  SiExpress,
+  SiFastapi,
+  SiPython,
+  SiCplusplus,
+  SiMongodb,
+  SiSqlite,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiPostman,
+  SiVite,
+  SiStreamlit,
+} from "react-icons/si";
+import { skills, type Skill } from "@/data/portfolio";
+import { cn } from "@/lib/utils";
+
+// Icon mapping
+const iconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiRedux,
+  SiHtml5,
+  SiCss,
+  SiNodedotjs,
+  SiExpress,
+  SiFastapi,
+  SiPython,
+  SiCplusplus,
+  SiMongodb,
+  SiSqlite,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiPostman,
+  SiVite,
+  SiStreamlit,
+};
+
+// Color mapping for each icon
+const colorMap: Record<string, string> = {
+  SiReact: "#61DAFB",
+  SiNextdotjs: "#ffffff",
+  SiTypescript: "#3178C6",
+  SiJavascript: "#F7DF1E",
+  SiTailwindcss: "#06B6D4",
+  SiRedux: "#764ABC",
+  SiHtml5: "#E34F26",
+  SiCss: "#1572B6",
+  SiNodedotjs: "#339933",
+  SiExpress: "#ffffff",
+  SiFastapi: "#009688",
+  SiPython: "#3776AB",
+  SiCplusplus: "#00599C",
+  SiMongodb: "#47A248",
+  SiSqlite: "#003B57",
+  SiGit: "#F05032",
+  SiGithub: "#ffffff",
+  SiDocker: "#2496ED",
+  SiPostman: "#FF6C37",
+  SiVite: "#646CFF",
+  SiStreamlit: "#FF4B4B",
+};
+
+const categories = [
+  { id: "all", label: "All" },
+  { id: "frontend", label: "Frontend" },
+  { id: "backend", label: "Backend" },
+  { id: "database", label: "Database" },
+  { id: "tools", label: "Tools" },
+] as const;
+
+type CategoryId = (typeof categories)[number]["id"];
+
+export default function TechStack() {
+  const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
+
+  const filteredSkills =
+    activeCategory === "all"
+      ? skills
+      : skills.filter((s) => s.category === activeCategory);
+
+  return (
+    <section id="skills" className="relative py-24 px-4">
+      <div className="mx-auto max-w-7xl">
+        {/* Section Title */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Tech <span className="gradient-text">Stack</span>
+          </h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Technologies and tools I work with to bring ideas to life
+          </p>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto rounded-full mt-4" />
+        </motion.div>
+
+        {/* Category Tabs */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              suppressHydrationWarning
+              className={cn(
+                "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                activeCategory === cat.id
+                  ? "bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg shadow-blue-500/20"
+                  : "glass text-slate-400 hover:text-white hover:bg-white/[0.08]"
+              )}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Skills Grid */}
+        <motion.div
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+          layout
+        >
+          {filteredSkills.map((skill: Skill, i: number) => {
+            const IconComponent = iconMap[skill.icon];
+            const color = colorMap[skill.icon] || "#ffffff";
+
+            return (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
+                whileHover={{
+                  scale: 1.1,
+                  y: -8,
+                  transition: { duration: 0.2 },
+                }}
+                className="group glass tech-card rounded-2xl p-5 flex flex-col items-center gap-3 cursor-default"
+                style={
+                  {
+                    "--glow-color": color,
+                  } as React.CSSProperties
+                }
+              >
+                {/* Icon */}
+                <div
+                  className="transition-all duration-300 group-hover:drop-shadow-[0_0_12px_var(--glow-color)]"
+                  style={{ color }}
+                >
+                  {IconComponent && <IconComponent size={36} />}
+                </div>
+
+                {/* Name */}
+                <span className="text-xs sm:text-sm font-medium text-slate-300 group-hover:text-white transition-colors text-center">
+                  {skill.name}
+                </span>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
+  );
+}

@@ -1,26 +1,270 @@
 @import "tailwindcss";
 
+/* ============================================
+   Design System — Premium Dark Portfolio
+   ============================================ */
+
+/* Custom Properties */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #06080f;
+  --bg-secondary: #0c1020;
+  --bg-card: rgba(15, 20, 40, 0.6);
+  --accent-blue: #3b82f6;
+  --accent-violet: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-subtle: rgba(148, 163, 184, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(148, 163, 184, 0.1);
+  --glow-blue: 0 0 30px rgba(59, 130, 246, 0.3);
+  --glow-violet: 0 0 30px rgba(139, 92, 246, 0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Global Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-blue) var(--bg-primary);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-blue), var(--accent-violet));
+  border-radius: 10px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, #f97316, #ec4899, var(--accent-violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glassmorphism */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-strong {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+/* Glow Effects */
+.glow-blue {
+  box-shadow: var(--glow-blue);
+}
+
+.glow-violet {
+  box-shadow: var(--glow-violet);
+}
+
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-cyan));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+/* Animated Gradient Background */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+/* Float Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Glow */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Profile Ring Animation */
+@keyframes ring-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-ring {
+  animation: ring-rotate 8s linear infinite;
+}
+
+/* Blob Animation */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -50px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(20px, 40px) scale(1.05); }
+}
+
+.animate-blob {
+  animation: blob 12s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Slide Up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Spin Slow */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* ============================================
+   Section Styles
+   ============================================ */
+
+section {
+  position: relative;
+}
+
+/* Card hover tilt - subtle */
+.tilt-card {
+  transition: transform 0.3s ease;
+}
+
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+/* Skill icon colors */
+.icon-react { color: #61DAFB; }
+.icon-nextjs { color: #ffffff; }
+.icon-typescript { color: #3178C6; }
+.icon-javascript { color: #F7DF1E; }
+.icon-tailwind { color: #06B6D4; }
+.icon-redux { color: #764ABC; }
+.icon-html { color: #E34F26; }
+.icon-css { color: #1572B6; }
+.icon-node { color: #339933; }
+.icon-express { color: #ffffff; }
+.icon-fastapi { color: #009688; }
+.icon-python { color: #3776AB; }
+.icon-cpp { color: #00599C; }
+.icon-mongodb { color: #47A248; }
+.icon-sqlite { color: #003B57; }
+.icon-git { color: #F05032; }
+.icon-github { color: #ffffff; }
+.icon-docker { color: #2496ED; }
+.icon-postman { color: #FF6C37; }
+.icon-vite { color: #646CFF; }
+.icon-streamlit { color: #FF4B4B; }
+
+/* Star particle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+/* Custom Tech Card Hover Glowing Border & Background */
+.tech-card {
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tech-card:hover {
+  border-color: color-mix(in srgb, var(--glow-color) 45%, transparent) !important;
+  background-color: color-mix(in srgb, var(--glow-color) 7%, var(--glass-bg)) !important;
+  box-shadow: 0 0 25px color-mix(in srgb, var(--glow-color) 12%, transparent) !important;
 }
