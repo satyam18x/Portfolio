@@ -120,8 +120,22 @@ export const projects: Project[] = [
       "Secure data validation pipeline",
       "Responsive React frontend",
     ],
-    github: "https://github.com/satyam18x",
+    github: "https://github.com/satyam18x/DataTrustX-AI-",
     category: "ai-ml",
+  },
+  {
+    title: "Burn IT NxT",
+    description:
+      "A secure, advanced Next.js athlete-tracking, workout curriculum management, and custom video-learning portal tailored for Burn IT Out Fitness.",
+    techStack: ["Next.js", "React", "Express.js", "Node.js", "MySQL", "JWT", "Bcrypt","pure vanilla CSS"],
+    features: [
+      "Advanced athlete progress tracking with analytics",
+      "Curriculum and workout management",
+      "Secure custom video portal",
+      "Responsive and intuitive UI",
+    ],
+    github: "https://github.com/satyam18x/Burn-IT-NxT",
+    category: "fullstack",
   },
   {
     title: "ShopEZ",
@@ -134,23 +148,11 @@ export const projects: Project[] = [
       "Shopping cart & checkout",
       "Efficient state management",
     ],
-    github: "https://github.com/satyam18x",
+    github: "https://github.com/satyam18x/ShopEZ-E-commerce-Application",
     category: "fullstack",
   },
-  {
-    title: "FeedSpace",
-    description:
-      "A modern social media feed application with an Instagram-style UI, allowing users to create posts, upload images, and browse a dynamic scrolling feed.",
-    techStack: ["Express.js", "React", "Node.js", "MongoDB", "Vite", "Axios", "Tailwind CSS"],
-    features: [
-      "Instagram-style social feed",
-      "Image upload & post creation",
-      "Dynamic scrolling feed",
-      "Real-time interactions",
-    ],
-    github: "https://github.com/satyam18x",
-    category: "fullstack",
-  },
+  
+
 ];
 
 // ---- Skills ----

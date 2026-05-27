@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -42,8 +43,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} dark`}>
+      <body
+        style={{
+          margin: 0,
+          padding: 0,
+          backgroundColor: "#06080f",
+          color: "#e2e8f0",
+          fontFamily: "var(--font-inter), system-ui, -apple-system, sans-serif",
+          overflowX: "hidden",
+          WebkitFontSmoothing: "antialiased",
+        }}
+      >
         {children}
       </body>
     </html>

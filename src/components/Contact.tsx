@@ -29,7 +29,6 @@ export default function Contact() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
-    // Simulate form submission
     setTimeout(() => {
       setSending(false);
       setSubmitted(true);
@@ -73,28 +72,49 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative py-28 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="contact"
+      style={{
+        paddingTop: "7rem",
+        paddingBottom: "7rem",
+        paddingLeft: "1.5rem",
+        paddingRight: "1.5rem",
+        position: "relative",
+      }}
+    >
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+
         {/* Section Title */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400 mb-3">
+            04 — Let&apos;s Connect
+          </p>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-5">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach
-            out!
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-5">
+            Have a project in mind or want to collaborate? Feel free to reach out!
           </p>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto rounded-full mt-4" />
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
+        {/* Two-column layout */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
+            gap: "4rem",
+            maxWidth: "960px",
+            margin: "0 auto",
+          }}
+        >
           {/* Contact Form */}
           <motion.div
             initial="hidden"
@@ -103,6 +123,7 @@ export default function Contact() {
             variants={fadeInUp}
             transition={{ duration: 0.6 }}
           >
+            <h3 className="text-xl font-bold text-white mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
@@ -156,7 +177,7 @@ export default function Contact() {
                 type="submit"
                 disabled={sending}
                 suppressHydrationWarning
-                className="flex items-center justify-center gap-2 w-full rounded-xl bg-gradient-to-r from-blue-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-60"
+                className="flex items-center justify-center gap-2 w-full rounded-xl bg-gradient-to-r from-blue-500 to-violet-500 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-60"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -186,7 +207,6 @@ export default function Contact() {
 
           {/* Contact Info */}
           <motion.div
-            className="space-y-4"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -194,42 +214,46 @@ export default function Contact() {
               visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
             }}
           >
+            <h3 className="text-xl font-bold text-white mb-6">Contact Info</h3>
             <motion.p
               variants={fadeInUp}
-              className="text-slate-400 mb-6 leading-relaxed"
+              className="text-slate-400 mb-8 leading-relaxed"
             >
               I&apos;m always open to discussing new projects, creative ideas,
               or opportunities to be part of your vision.
             </motion.p>
 
-            {contacts.map((contact) => {
-              const Icon = contact.icon;
-              return (
-                <motion.a
-                  key={contact.label}
-                  href={contact.href}
-                  target={contact.label !== "Phone" ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  variants={fadeInUp}
-                  whileHover={{ x: 6, transition: { duration: 0.2 } }}
-                  className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-white/[0.06] transition-all duration-300 group"
-                >
-                  <div
-                    className={`flex items-center justify-center w-11 h-11 rounded-xl ${contact.bg} ${contact.color} transition-colors`}
+            <div className="space-y-4">
+              {contacts.map((contact) => {
+                const Icon = contact.icon;
+                return (
+                  <motion.a
+                    key={contact.label}
+                    href={contact.href}
+                    target={contact.label !== "Phone" ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    variants={fadeInUp}
+                    whileHover={{ x: 6, transition: { duration: 0.2 } }}
+                    className="flex items-center gap-4 glass rounded-xl p-4 hover:bg-white/[0.06] transition-all duration-300 group"
+                    style={{ border: "1px solid rgba(148, 163, 184, 0.08)" }}
                   >
-                    <Icon size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">
-                      {contact.label}
-                    </p>
-                    <p className="text-sm text-slate-300 group-hover:text-white transition-colors">
-                      {contact.value}
-                    </p>
-                  </div>
-                </motion.a>
-              );
-            })}
+                    <div
+                      className={`flex items-center justify-center w-12 h-12 rounded-xl flex-shrink-0 ${contact.bg} ${contact.color} transition-colors`}
+                    >
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mb-1">
+                        {contact.label}
+                      </p>
+                      <p className="text-sm text-slate-300 group-hover:text-white transition-colors">
+                        {contact.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>

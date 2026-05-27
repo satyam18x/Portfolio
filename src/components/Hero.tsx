@@ -179,7 +179,7 @@ export default function Hero() {
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
       >
-        <span className="text-xs text-slate-600 tracking-widest uppercase">Scroll</span>
+        <span suppressHydrationWarning className="text-xs text-slate-600 tracking-widest uppercase">Scroll</span>
         <ArrowDown className="text-slate-500" size={20} />
       </motion.div>
     </section>
