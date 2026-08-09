@@ -1,30 +1,32 @@
 @import "tailwindcss";
 
 /* ============================================
-   Design System — Premium Dark Portfolio
+   Design System — Minimal Black Portfolio
    ============================================ */
 
-/* Custom Properties */
 :root {
-  --bg-primary: #06080f;
-  --bg-secondary: #0c1020;
-  --bg-card: rgba(15, 20, 40, 0.6);
-  --accent-blue: #3b82f6;
-  --accent-violet: #8b5cf6;
-  --accent-cyan: #06b6d4;
-  --accent-emerald: #10b981;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border-subtle: rgba(148, 163, 184, 0.08);
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(148, 163, 184, 0.1);
-  --glow-blue: 0 0 30px rgba(59, 130, 246, 0.3);
-  --glow-violet: 0 0 30px rgba(139, 92, 246, 0.3);
-  --section-padding: 7rem;
+  /* Colors */
+  --bg: #000000;
+  --bg-surface: rgba(255, 255, 255, 0.03);
+  --bg-surface-hover: rgba(255, 255, 255, 0.055);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(59, 130, 246, 0.45);
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-muted: rgba(59, 130, 246, 0.1);
+  --text-1: #f8fafc;
+  --text-2: #94a3b8;
+  --text-3: #475569;
+
+  /* Fonts — set by next/font in layout.tsx */
+  --font-display: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
+  --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-/* Global Resets */
+/* ============================================
+   Global Resets
+   ============================================ */
+
 *,
 *::before,
 *::after {
@@ -34,15 +36,17 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--accent-blue) var(--bg-primary);
+  scrollbar-color: rgba(59, 130, 246, 0.35) #000;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  background-color: #000000;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--text-1);
+  font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -51,154 +55,130 @@ body {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent-blue), var(--accent-violet));
+  background: rgba(59, 130, 246, 0.35);
   border-radius: 10px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.55);
+}
 
-/* Selection */
+/* Text Selection */
 ::selection {
-  background: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.22);
   color: #fff;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
 }
 
 /* ============================================
    Utility Classes
    ============================================ */
 
-/* Gradient Text */
+/* Gradient text — blue to indigo */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-cyan));
+  background: linear-gradient(135deg, #3b82f6 0%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-warm {
-  background: linear-gradient(135deg, #f97316, #ec4899, var(--accent-violet));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Surface card */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-/* Glassmorphism */
+.card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+}
+
+/* Tech pill chip */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-2);
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+/* Glassmorphism (used for navbar/overlays) */
 .glass {
-  background: var(--glass-bg);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border);
 }
 
-.glass-strong {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(148, 163, 184, 0.12);
+/* ============================================
+   Tech Card (TechStack component)
+   ============================================ */
+
+.tech-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.2s ease;
 }
 
-/* Glow Effects */
-.glow-blue {
-  box-shadow: var(--glow-blue);
+.tech-card:hover {
+  border-color: color-mix(in srgb, var(--glow-color, #3b82f6) 40%, transparent);
+  background-color: color-mix(in srgb, var(--glow-color, #3b82f6) 6%, rgba(255, 255, 255, 0.03));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--glow-color, #3b82f6) 10%, transparent);
 }
 
-.glow-violet {
-  box-shadow: var(--glow-violet);
-}
+/* ============================================
+   Animations
+   ============================================ */
 
-.glow-border {
-  position: relative;
-}
-
-.glow-border::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-cyan));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.glow-border:hover::after {
-  opacity: 1;
-}
-
-/* Animated Gradient Background */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.animated-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 6s ease infinite;
-}
-
-/* Float Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Pulse Glow */
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4), 0 0 60px rgba(139, 92, 246, 0.2); }
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-/* Profile Ring Animation */
-@keyframes ring-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.profile-ring {
-  animation: ring-rotate 8s linear infinite;
-}
-
-/* Blob Animation */
-@keyframes blob {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -50px) scale(1.1); }
-  50% { transform: translate(-20px, 20px) scale(0.95); }
-  75% { transform: translate(20px, 40px) scale(1.05); }
-}
-
-.animate-blob {
-  animation: blob 12s ease-in-out infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Slide Up */
-@keyframes slideUp {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -206,7 +186,11 @@ body {
   }
 }
 
-/* Spin Slow */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -216,97 +200,20 @@ body {
   animation: spin-slow 20s linear infinite;
 }
 
-/* Star particle */
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
-}
-
 /* ============================================
-   Section Styles — Proper Spacing & Separation
+   Section Spacing
    ============================================ */
 
 section {
   position: relative;
 }
 
-/* Every section except hero gets a top separator line */
-section + section::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 900px;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(59, 130, 246, 0.25),
-    rgba(139, 92, 246, 0.25),
-    transparent
-  );
-}
-
-/* Section background alternation for visual rhythm */
-section:nth-child(even) {
-  background: radial-gradient(
-    ellipse at center,
-    rgba(15, 23, 42, 0.4) 0%,
-    transparent 70%
-  );
-}
-
 /* ============================================
-   Card Styles
+   Focus Visible (Accessibility)
    ============================================ */
 
-/* Card hover tilt - subtle */
-.tilt-card {
-  transition: transform 0.3s ease;
-}
-
-.tilt-card:hover {
-  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
-}
-
-/* ============================================
-   Skill Icon Colors
-   ============================================ */
-
-.icon-react { color: #61DAFB; }
-.icon-nextjs { color: #ffffff; }
-.icon-typescript { color: #3178C6; }
-.icon-javascript { color: #F7DF1E; }
-.icon-tailwind { color: #06B6D4; }
-.icon-redux { color: #764ABC; }
-.icon-html { color: #E34F26; }
-.icon-css { color: #1572B6; }
-.icon-node { color: #339933; }
-.icon-express { color: #ffffff; }
-.icon-fastapi { color: #009688; }
-.icon-python { color: #3776AB; }
-.icon-cpp { color: #00599C; }
-.icon-mongodb { color: #47A248; }
-.icon-sqlite { color: #003B57; }
-.icon-git { color: #F05032; }
-.icon-github { color: #ffffff; }
-.icon-docker { color: #2496ED; }
-.icon-postman { color: #FF6C37; }
-.icon-vite { color: #646CFF; }
-.icon-streamlit { color: #FF4B4B; }
-
-/* Custom Tech Card Hover Glowing Border & Background */
-.tech-card {
-  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.tech-card:hover {
-  border-color: color-mix(in srgb, var(--glow-color) 45%, transparent) !important;
-  background-color: color-mix(in srgb, var(--glow-color) 7%, var(--glass-bg)) !important;
-  box-shadow: 0 0 25px color-mix(in srgb, var(--glow-color) 12%, transparent) !important;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }

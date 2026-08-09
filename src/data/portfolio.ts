@@ -10,6 +10,8 @@ export interface PersonalInfo {
   phone: string;
   github: string;
   linkedin: string;
+  twitter?: string;
+  location: string;
   bio: string;
 }
 
@@ -35,6 +37,7 @@ export interface Project {
   techStack: string[];
   features: string[];
   github: string;
+  liveUrl?: string;
   category: "fullstack" | "frontend" | "ai-ml";
 }
 
@@ -66,6 +69,8 @@ export const personalInfo: PersonalInfo = {
   phone: "+91 7879970233",
   github: "https://github.com/satyam18x",
   linkedin: "https://www.linkedin.com/in/satyam-haldkar-b9b366310",
+  twitter: "",
+  location: "Jabalpur, Madhya Pradesh, India",
   bio: "Computer Science undergraduate with hands-on experience in full-stack development using TypeScript and the MERN stack. Skilled in building scalable web applications, designing responsive user interfaces, and developing robust backend services with seamless integration.",
 };
 
@@ -121,13 +126,14 @@ export const projects: Project[] = [
       "Responsive React frontend",
     ],
     github: "https://github.com/satyam18x/DataTrustX-AI-",
+    liveUrl: "",
     category: "ai-ml",
   },
   {
     title: "Burn IT NxT",
     description:
       "A secure, advanced Next.js athlete-tracking, workout curriculum management, and custom video-learning portal tailored for Burn IT Out Fitness.",
-    techStack: ["Next.js", "React", "Express.js", "Node.js", "MySQL", "JWT", "Bcrypt","pure vanilla CSS"],
+    techStack: ["Next.js", "React", "Express.js", "Node.js", "MySQL", "JWT", "Bcrypt"],
     features: [
       "Advanced athlete progress tracking with analytics",
       "Curriculum and workout management",
@@ -135,6 +141,7 @@ export const projects: Project[] = [
       "Responsive and intuitive UI",
     ],
     github: "https://github.com/satyam18x/Burn-IT-NxT",
+    liveUrl: "",
     category: "fullstack",
   },
   {
@@ -149,10 +156,9 @@ export const projects: Project[] = [
       "Efficient state management",
     ],
     github: "https://github.com/satyam18x/ShopEZ-E-commerce-Application",
+    liveUrl: "",
     category: "fullstack",
   },
-  
-
 ];
 
 // ---- Skills ----
@@ -232,13 +238,11 @@ export const certifications: Certification[] = [
   },
 ];
 
-// ---- Navigation Links ----
+// ---- Navigation Links (route-based) ----
 export const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Projects", href: "/projects" },
 ];
 
 // ---- Stats ----
