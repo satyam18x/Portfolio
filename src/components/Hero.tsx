@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { Mail, Download, ArrowRight, Github, Linkedin } from "lucide-react";
+import { Mail, Download, ArrowRight } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { personalInfo, typingRoles } from "@/data/portfolio";
@@ -98,22 +99,31 @@ export default function Hero() {
               {...fadeUp(0.6)}
               className="flex gap-2.5 justify-center lg:justify-start"
             >
-              {[
-                { href: personalInfo.github, label: "GitHub", Icon: Github },
-                { href: personalInfo.linkedin, label: "LinkedIn", Icon: Linkedin },
-                { href: `mailto:${personalInfo.email}`, label: "Email", Icon: Mail },
-              ].map(({ href, label, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  aria-label={label}
-                  className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] text-slate-500 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/[0.06] transition-all duration-200"
-                >
-                  <Icon size={17} />
-                </a>
-              ))}
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] text-slate-500 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/[0.06] transition-all duration-200"
+              >
+                <FaGithub size={17} />
+              </a>
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] text-slate-500 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/[0.06] transition-all duration-200"
+              >
+                <FaLinkedin size={17} />
+              </a>
+              <a
+                href={`mailto:${personalInfo.email}`}
+                aria-label="Email"
+                className="flex items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] text-slate-500 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/[0.06] transition-all duration-200"
+              >
+                <Mail size={17} />
+              </a>
             </motion.div>
           </div>
 
@@ -125,7 +135,7 @@ export default function Hero() {
             className="flex-shrink-0"
           >
             <div className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-72 lg:h-72">
-              {/* Subtle blue glow behind photo */}
+              {/* Subtle blue glow */}
               <div
                 className="absolute inset-0 rounded-2xl blur-3xl"
                 style={{ background: "rgba(59,130,246,0.12)" }}

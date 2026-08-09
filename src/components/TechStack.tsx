@@ -22,9 +22,9 @@ const colorMap: Record<string, string> = {
   SiReact: "#61DAFB", SiNextdotjs: "#ffffff", SiTypescript: "#3178C6",
   SiJavascript: "#F7DF1E", SiTailwindcss: "#06B6D4", SiRedux: "#764ABC",
   SiHtml5: "#E34F26", SiCss: "#1572B6", SiNodedotjs: "#339933",
-  SiExpress: "#ffffff", SiFastapi: "#009688", SiPython: "#3776AB",
-  SiCplusplus: "#00599C", SiMongodb: "#47A248", SiSqlite: "#003B57",
-  SiGit: "#F05032", SiGithub: "#ffffff", SiDocker: "#2496ED",
+  SiExpress: "#aaaaaa", SiFastapi: "#009688", SiPython: "#3776AB",
+  SiCplusplus: "#00599C", SiMongodb: "#47A248", SiSqlite: "#4479A1",
+  SiGit: "#F05032", SiGithub: "#aaaaaa", SiDocker: "#2496ED",
   SiPostman: "#FF6C37", SiVite: "#646CFF", SiStreamlit: "#FF4B4B",
 };
 
@@ -47,45 +47,35 @@ export default function TechStack() {
       : skills.filter((s) => s.category === activeCategory);
 
   return (
-    <section
-      id="skills"
-      style={{
-        paddingTop: "7rem",
-        paddingBottom: "7rem",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
-        position: "relative",
-      }}
-    >
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+    <section id="skills" className="py-20 border-t border-white/[0.04]">
+      <div className="mx-auto max-w-5xl px-5 sm:px-8 lg:px-10">
 
-        {/* Section Title */}
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-14"
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-10"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.45 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-400 mb-3">
-            02 — Tools & Technologies
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-3">
+            Tools & Technologies
           </p>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-5">
-            Tech <span className="gradient-text">Stack</span>
+          <h2
+            className="text-3xl sm:text-4xl font-bold"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Tech Stack
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-5">
-            Technologies and tools I work with to bring ideas to life
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-violet-500 mx-auto rounded-full" />
         </motion.div>
 
         {/* Category Tabs */}
         <motion.div
-          className="flex flex-wrap justify-center gap-3 mb-14"
-          initial={{ opacity: 0, y: 20 }}
+          className="flex flex-wrap gap-2 mb-8"
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
         >
           {categories.map((cat) => (
             <button
@@ -93,10 +83,10 @@ export default function TechStack() {
               onClick={() => setActiveCategory(cat.id)}
               suppressHydrationWarning
               className={cn(
-                "px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300",
+                "px-4 py-1.5 rounded-md text-xs font-medium transition-all duration-200",
                 activeCategory === cat.id
-                  ? "bg-gradient-to-r from-blue-500 to-violet-500 text-white shadow-lg shadow-blue-500/20"
-                  : "glass text-slate-400 hover:text-white hover:bg-white/[0.08]"
+                  ? "bg-blue-500 text-white"
+                  : "border border-white/[0.08] text-slate-500 hover:text-white hover:border-white/20"
               )}
             >
               {cat.label}
@@ -106,38 +96,39 @@ export default function TechStack() {
 
         {/* Skills Grid */}
         <motion.div
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-5"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3"
           layout
         >
           {filteredSkills.map((skill: Skill, i: number) => {
             const IconComponent = iconMap[skill.icon];
-            const color = colorMap[skill.icon] || "#ffffff";
+            const color = colorMap[skill.icon] || "#888888";
 
             return (
               <motion.div
                 key={skill.name}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
-                whileHover={{ scale: 1.1, y: -8, transition: { duration: 0.2 } }}
-                className="group glass tech-card rounded-2xl p-5 flex flex-col items-center gap-3 cursor-default"
+                transition={{ duration: 0.35, delay: i * 0.03 }}
+                whileHover={{ y: -4, scale: 1.04, transition: { duration: 0.15 } }}
+                className="group tech-card p-4 flex flex-col items-center gap-2.5 cursor-default"
                 style={{ "--glow-color": color } as React.CSSProperties}
               >
                 <div
-                  className="transition-all duration-300 group-hover:drop-shadow-[0_0_12px_var(--glow-color)]"
+                  className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_var(--glow-color)]"
                   style={{ color }}
                 >
-                  {IconComponent && <IconComponent size={36} />}
+                  {IconComponent && <IconComponent size={30} />}
                 </div>
-                <span className="text-xs sm:text-sm font-medium text-slate-300 group-hover:text-white transition-colors text-center">
+                <span className="text-[11px] font-medium text-slate-500 group-hover:text-slate-200 transition-colors text-center leading-tight">
                   {skill.name}
                 </span>
               </motion.div>
             );
           })}
         </motion.div>
+
       </div>
     </section>
   );
