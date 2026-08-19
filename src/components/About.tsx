@@ -29,14 +29,15 @@ const stagger = {
 
 export default function About() {
   return (
-    <main className="pt-[60px]">
+    <section id="about" aria-label="About Me">
       <div className="mx-auto max-w-5xl px-5 sm:px-8 lg:px-10 py-20 lg:py-28">
 
-        {/* ── Page Header ── */}
+        {/* ── Section Header ── */}
         <motion.div
           className="mb-16"
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
           variants={stagger}
         >
           <motion.p
@@ -246,6 +247,6 @@ export default function About() {
         </div>
 
       </div>
-    </main>
+    </section>
   );
 }

@@ -7,8 +7,9 @@ import { personalInfo } from "@/data/portfolio";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
+  { name: "About", href: "/#about" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 export default function Footer() {

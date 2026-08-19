@@ -238,11 +238,12 @@ export const certifications: Certification[] = [
   },
 ];
 
-// ---- Navigation Links (route-based) ----
+// ---- Navigation Links ----
 export const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
+  { name: "About", href: "/#about" },
+  { name: "Projects", href: "/#projects" },
+  { name: "Contact", href: "/#contact" },
 ];
 
 // ---- Stats ----

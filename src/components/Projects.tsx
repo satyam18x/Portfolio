@@ -56,14 +56,15 @@ export default function Projects() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <main className="pt-[60px]">
+    <section id="projects" aria-label="Projects">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 py-20 lg:py-28">
 
-        {/* ── Page Header ── */}
+        {/* ── Section Header ── */}
         <motion.div
           className="mb-14"
           initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-4">
@@ -84,7 +85,8 @@ export default function Projects() {
         <motion.div
           className="flex flex-wrap gap-2 mb-12"
           initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           {filters.map((f) => (
@@ -120,7 +122,7 @@ export default function Projects() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </main>
+    </section>
   );
 }
 

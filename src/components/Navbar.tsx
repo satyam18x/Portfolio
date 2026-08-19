@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 
@@ -12,8 +12,10 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const pathname = usePathname();
+  const router = useRouter();
 
   // Change navbar appearance when scrolling
   useEffect(() => {
@@ -32,10 +34,84 @@ export default function Navbar() {
     };
   }, []);
 
+  // Track which section is in view (only on home page)
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection("");
+      return;
+    }
+
+    const sectionIds = ["home", "about", "projects", "contact"];
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    // Default to "home" on initial load
+    setActiveSection("home");
+
+    return () => {
+      observers.forEach((obs) => obs.disconnect());
+    };
+  }, [pathname]);
+
   // Close mobile menu whenever the route changes
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
+
+  // Handle navigation for hash links
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      // Handle hash-based links
+      if (href.includes("#")) {
+        e.preventDefault();
+        const hash = href.split("#")[1];
+
+        if (pathname === "/") {
+          // Already on home page — just scroll
+          const el = document.getElementById(hash);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        } else {
+          // Navigate to home page first, then scroll
+          router.push(href);
+        }
+      }
+
+      setIsOpen(false);
+    },
+    [pathname, router]
+  );
+
+  // Determine if a nav link is active
+  const isLinkActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/" && (activeSection === "home" || activeSection === "");
+    }
+    if (href.includes("#")) {
+      const hash = href.split("#")[1];
+      return pathname === "/" && activeSection === hash;
+    }
+    return pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+  };
 
   return (
     <motion.header
@@ -43,7 +119,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50",
@@ -68,14 +144,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive =
-                pathname === link.href ||
-                (link.href !== "/" && pathname.startsWith(`${link.href}/`));
+              const isActive = isLinkActive(link.href);
 
               return (
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={cn(
                     "relative px-4 py-2 text-sm font-medium",
                     "rounded-lg transition-colors duration-300",
@@ -169,7 +244,7 @@ export default function Navbar() {
               }}
               transition={{
                 duration: 0.3,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
               className="
                 md:hidden
@@ -181,10 +256,7 @@ export default function Navbar() {
             >
               <div className="px-4 py-4 space-y-2">
                 {navLinks.map((link, index) => {
-                  const isActive =
-                    pathname === link.href ||
-                    (link.href !== "/" &&
-                      pathname.startsWith(`${link.href}/`));
+                  const isActive = isLinkActive(link.href);
 
                   return (
                     <motion.div
@@ -203,7 +275,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => handleNavClick(e, link.href)}
                         className={cn(
                           "block rounded-lg px-4 py-3",
                           "text-sm font-medium",
