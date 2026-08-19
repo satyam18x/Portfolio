@@ -11,7 +11,7 @@ import { personalInfo, typingRoles } from "@/data/portfolio";
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, delay, ease: "easeOut" },
+  transition: { duration: 0.5, delay, ease: "easeOut" as const },
 });
 
 export default function Hero() {
@@ -131,7 +131,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" as const }}
             className="flex-shrink-0"
           >
             <div className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-72 lg:h-72">
@@ -168,7 +168,7 @@ export default function Hero() {
         <span className="text-[10px] text-slate-700 tracking-[0.22em] uppercase">Scroll</span>
         <motion.div
           animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" as const }}
           className="w-px h-8 bg-gradient-to-b from-slate-700 to-transparent"
         />
       </motion.div>
