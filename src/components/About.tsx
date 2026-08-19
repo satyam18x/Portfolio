@@ -2,17 +2,11 @@
 
 import { motion } from "framer-motion";
 import {
-  Briefcase,
-  GraduationCap,
   Award,
   BadgeCheck,
-  MapPin,
-  Calendar,
 } from "lucide-react";
 import {
   personalInfo,
-  experiences,
-  education,
   achievements,
   certifications,
   stats,
@@ -86,99 +80,7 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* ── Experience & Education ── */}
-        <div className="grid lg:grid-cols-2 gap-10 mb-20">
 
-          {/* Experience */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500/10 text-blue-400">
-                <Briefcase size={16} />
-              </div>
-              <h2
-                className="text-xl font-bold"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Experience
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {experiences.map((exp, i) => (
-                <div
-                  key={i}
-                  className="card p-5 hover:border-blue-500/30"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                    <h3 className="text-base font-semibold text-white">{exp.role}</h3>
-                    <span className="text-xs text-blue-400 font-medium bg-blue-500/10 px-2.5 py-1 rounded-full w-fit">
-                      {exp.duration}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-4">
-                    <span className="text-slate-400 font-medium">{exp.company}</span>
-                    <span>·</span>
-                    <span className="flex items-center gap-1">
-                      <MapPin size={11} />
-                      {exp.location}
-                    </span>
-                    <span>·</span>
-                    <span>{exp.type}</span>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {exp.points.map((point, j) => (
-                      <li key={j} className="text-sm text-slate-400 flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Education */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-indigo-500/10 text-indigo-400">
-                <GraduationCap size={16} />
-              </div>
-              <h2
-                className="text-xl font-bold"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Education
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {education.map((edu, i) => (
-                <div key={i} className="card p-5 hover:border-indigo-500/30">
-                  <h3 className="font-semibold text-white text-sm mb-1.5">{edu.degree}</h3>
-                  <p className="text-xs text-indigo-400 font-medium mb-3">{edu.institution}</p>
-                  <div className="flex items-center justify-between text-xs text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={11} />
-                      {edu.year}
-                    </span>
-                    <span className="text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded-full">
-                      {edu.grade}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
 
         {/* ── Achievements & Certifications ── */}
         <div className="grid lg:grid-cols-2 gap-10">

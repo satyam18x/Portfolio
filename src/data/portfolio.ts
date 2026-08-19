@@ -7,7 +7,7 @@ export interface PersonalInfo {
   role: string;
   tagline: string;
   email: string;
-  phone: string;
+  phone?: string;
   github: string;
   linkedin: string;
   twitter?: string;
@@ -66,7 +66,6 @@ export const personalInfo: PersonalInfo = {
   tagline:
     "Building scalable web applications with modern technologies",
   email: "satyamhaldkar45@gmail.com",
-  phone: "+91 7879970233",
   github: "https://github.com/satyam18x",
   linkedin: "https://www.linkedin.com/in/satyam-haldkar-b9b366310",
   twitter: "",
@@ -242,6 +241,7 @@ export const certifications: Certification[] = [
 export const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/#about" },
+  { name: "Experience", href: "/#experience" },
   { name: "Projects", href: "/#projects" },
   { name: "Contact", href: "/#contact" },
 ];

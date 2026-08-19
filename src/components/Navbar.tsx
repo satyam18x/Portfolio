@@ -41,7 +41,7 @@ export default function Navbar() {
       return;
     }
 
-    const sectionIds = ["home", "about", "projects", "contact"];
+    const sectionIds = ["home", "about", "experience", "projects", "contact"];
     const observers: IntersectionObserver[] = [];
 
     sectionIds.forEach((id) => {
