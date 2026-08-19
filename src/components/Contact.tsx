@@ -71,15 +71,6 @@ export default function Contact() {
             Let&apos;s Work Together
           </motion.h2>
 
-          {/* Description */}
-          <motion.p
-            variants={fadeUp}
-            className="text-slate-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed mb-6"
-          >
-            I&apos;m always open to discussing new opportunities, interesting
-            projects, or just a friendly chat about tech.
-          </motion.p>
-
           {/* Primary Action Button */}
           <motion.div variants={fadeUp} className="mb-8">
             <a
