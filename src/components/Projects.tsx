@@ -156,7 +156,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.title}
           </h2>
           <span className="text-[10px] font-medium uppercase tracking-wider text-slate-600 bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 rounded-full whitespace-nowrap ml-3 mt-0.5">
-            {project.category === "ai-ml" ? "AI / ML" : "Full Stack"}
+            {project.category === "ai-ml"
+              ? "AI / ML"
+              : project.category === "games"
+              ? "Games"
+              : "Full Stack"}
           </span>
         </div>
 
