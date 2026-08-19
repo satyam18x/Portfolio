@@ -7,13 +7,15 @@ import { FaGithub } from "react-icons/fa";
 import {
   SiReact, SiTailwindcss, SiFastapi, SiPython,
   SiNodedotjs, SiExpress, SiMongodb, SiVite, SiSqlite,
-  SiJsonwebtokens, SiNextdotjs, SiMysql,
+  SiJsonwebtokens, SiNextdotjs, SiMysql, SiTypescript,
 } from "react-icons/si";
 import { projects, type Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const techIconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   React: SiReact,
+  "React Native": SiReact,
+  TypeScript: SiTypescript,
   "Tailwind CSS": SiTailwindcss,
   FastAPI: SiFastapi,
   Python: SiPython,
@@ -31,6 +33,7 @@ const filters = [
   { id: "all", label: "All" },
   { id: "fullstack", label: "Full Stack" },
   { id: "ai-ml", label: "AI / ML" },
+  { id: "games", label: "Games" },
 ] as const;
 
 type FilterId = (typeof filters)[number]["id"];
@@ -39,12 +42,14 @@ const categoryAccent: Record<string, string> = {
   "ai-ml": "rgba(139, 92, 246, 0.4)",
   fullstack: "rgba(59, 130, 246, 0.4)",
   frontend: "rgba(16, 185, 129, 0.4)",
+  games: "rgba(245, 158, 11, 0.4)",
 };
 
 const categoryTop: Record<string, string> = {
   "ai-ml": "#8b5cf6",
   fullstack: "#3b82f6",
   frontend: "#10b981",
+  games: "#f59e0b",
 };
 
 export default function Projects() {

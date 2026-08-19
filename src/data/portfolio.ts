@@ -38,7 +38,7 @@ export interface Project {
   features: string[];
   github: string;
   liveUrl?: string;
-  category: "fullstack" | "frontend" | "ai-ml";
+  category: "fullstack" | "frontend" | "ai-ml" | "games";
 }
 
 export interface Skill {
@@ -113,6 +113,21 @@ export const education: Education[] = [
 
 // ---- Projects ----
 export const projects: Project[] = [
+  {
+    title: "Bulls & Cows",
+    description:
+      "A real-time offline multiplayer number guessing game built with React Native and TypeScript. Operates over local WiFi/hotspot via zero-config TCP server auto-discovery.",
+    techStack: ["React Native", "TypeScript", "Node.js"],
+    features: [
+      "Real-time multiplayer over local WiFi / hotspot",
+      "Zero-config TCP auto-discovery via mDNS",
+      "Custom game engine & TCP server implementation",
+      "Live guess history & offline gameplay",
+    ],
+    github: "https://github.com/satyam18x/Bulls-Cows",
+    liveUrl: "",
+    category: "games",
+  },
   {
     title: "DataTrustX-AI",
     description:
@@ -248,10 +263,10 @@ export const navLinks = [
 
 // ---- Stats ----
 export const stats = [
-  { label: "Projects Built", value: "3+" },
+  { label: "Projects Built", value: "4+" },
   { label: "Certifications", value: "5" },
   { label: "CGPA", value: "8.20" },
-  { label: "Hackathons", value: "2" },
+  { label: "Hackathons", value: "3+" },
 ];
 
 // ---- Typing Animation Roles ----
