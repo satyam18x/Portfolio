@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Maximize2, Terminal } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import {
   SiReact, SiTailwindcss, SiFastapi, SiPython,
@@ -11,6 +11,7 @@ import {
 } from "react-icons/si";
 import { projects, type Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
+import ProjectModal from "@/components/ProjectModal";
 
 const techIconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
   React: SiReact,
@@ -30,20 +31,13 @@ const techIconMap: Record<string, React.ComponentType<{ size?: number; className
 };
 
 const filters = [
-  { id: "all", label: "All" },
+  { id: "all", label: "All Projects" },
   { id: "fullstack", label: "Full Stack" },
   { id: "ai-ml", label: "AI / ML" },
   { id: "games", label: "Games" },
 ] as const;
 
 type FilterId = (typeof filters)[number]["id"];
-
-const categoryAccent: Record<string, string> = {
-  "ai-ml": "rgba(139, 92, 246, 0.4)",
-  fullstack: "rgba(59, 130, 246, 0.4)",
-  frontend: "rgba(16, 185, 129, 0.4)",
-  games: "rgba(245, 158, 11, 0.4)",
-};
 
 const categoryTop: Record<string, string> = {
   "ai-ml": "#8b5cf6",
@@ -54,6 +48,7 @@ const categoryTop: Record<string, string> = {
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<FilterId>("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filtered =
     activeFilter === "all"
@@ -73,16 +68,16 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-4">
-            What I&apos;ve Built
+            Featured Works & Applications
           </p>
           <h1
             className="text-4xl sm:text-5xl font-bold mb-4"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Projects
+            Featured Projects
           </h1>
           <p className="text-slate-400 text-base sm:text-lg max-w-xl leading-relaxed">
-            A selection of projects I&apos;ve built and shipped.
+            Explore my latest web apps, AI systems, and interactive creations with live previews and technical breakdowns.
           </p>
         </motion.div>
 
@@ -100,10 +95,10 @@ export default function Projects() {
               onClick={() => setActiveFilter(f.id)}
               suppressHydrationWarning
               className={cn(
-                "px-5 py-2 rounded-md text-sm font-medium transition-all duration-200",
+                "px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
                 activeFilter === f.id
-                  ? "bg-blue-500 text-white shadow-md shadow-blue-500/20"
-                  : "border border-white/[0.08] text-slate-500 hover:text-white hover:border-white/20"
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-400/30"
+                  : "border border-white/[0.08] bg-white/[0.02] text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05]"
               )}
             >
               {f.label}
@@ -115,24 +110,57 @@ export default function Projects() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid md:grid-cols-2 gap-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
           >
             {filtered.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
+              <ProjectCard
+                key={project.title}
+                project={project}
+                index={i}
+                onOpenModal={() => setSelectedProject(project)}
+              />
             ))}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Interactive Detail Modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  onOpenModal,
+}: {
+  project: Project;
+  index: number;
+  onOpenModal: () => void;
+}) {
+  const [imgSrc, setImgSrc] = useState(project.image);
+  const [imgError, setImgError] = useState(false);
   const topColor = categoryTop[project.category] ?? categoryTop.fullstack;
+
+  const handleImageError = () => {
+    if (imgSrc && imgSrc.startsWith("/projects/")) {
+      // Try root public path
+      setImgSrc(imgSrc.replace("/projects/", "/"));
+    } else if (imgSrc && !imgSrc.startsWith("/projects/")) {
+      // Try /projects/ subfolder path
+      setImgSrc(`/projects${imgSrc}`);
+    } else {
+      setImgError(true);
+    }
+  };
 
   return (
     <motion.article
@@ -140,72 +168,136 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
-      whileHover={{ y: -4, transition: { duration: 0.18 } }}
-      className="group flex flex-col card overflow-hidden"
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+      className="group flex flex-col rounded-2xl bg-[#090d16] border border-white/[0.08] hover:border-blue-500/40 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden transition-all duration-300"
     >
-      {/* Top accent bar */}
-      <div className="h-[2px] flex-shrink-0" style={{ background: topColor }} />
+      {/* Top accent line */}
+      <div className="h-[3px] flex-shrink-0" style={{ background: topColor }} />
 
+      {/* Browser Frame Top Bar */}
+      <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/[0.06]">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-green-500/70 inline-block" />
+        </div>
+        <span className="text-[11px] font-mono text-slate-500 tracking-wide truncate max-w-[200px]">
+          {project.title.toLowerCase().replace(/[^a-z0-9]/g, "")}.app
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-white/[0.05] border border-white/[0.08] px-2 py-0.5 rounded-md">
+          {project.category === "ai-ml"
+            ? "AI / ML"
+            : project.category === "games"
+            ? "Games"
+            : "Full Stack"}
+        </span>
+      </div>
+
+      {/* Project Screenshot / Homepage Visual Container */}
+      <div
+        onClick={onOpenModal}
+        className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950 cursor-pointer group/img"
+      >
+        {imgSrc && !imgError ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={imgSrc}
+            alt={`${project.title} Preview`}
+            onError={handleImageError}
+            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/img:scale-105"
+          />
+        ) : (
+          /* Fallback visual preview card with styled gradient & code background */
+          <div className="w-full h-full p-6 bg-gradient-to-br from-slate-900 via-blue-950/30 to-purple-950/30 flex flex-col justify-between relative overflow-hidden group-hover/img:from-blue-950/50 transition-colors duration-500">
+            <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
+            <div className="relative z-10 flex items-center justify-between">
+              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                <Terminal size={24} />
+              </div>
+              <span className="text-xs font-mono text-blue-400/80 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20">
+                Preview Ready
+              </span>
+            </div>
+
+            <div className="relative z-10 space-y-1">
+              <h3 className="text-xl font-bold text-white tracking-tight">{project.title}</h3>
+              <p className="text-xs text-slate-400 line-clamp-1">{project.description}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Hover Overlay with Expand Action */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <button
+            onClick={onOpenModal}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/90 text-white font-medium text-xs shadow-lg backdrop-blur-md transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-blue-500"
+          >
+            <Maximize2 size={14} />
+            <span>View Full Details & Screenshots</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Project Content Body */}
       <div className="flex flex-col flex-1 p-6">
-        {/* Header */}
         <div className="flex items-start justify-between mb-3">
           <h2
-            className="text-base font-semibold text-white group-hover:text-blue-400 transition-colors leading-snug"
+            onClick={onOpenModal}
+            className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors leading-snug cursor-pointer"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {project.title}
           </h2>
-          <span className="text-[10px] font-medium uppercase tracking-wider text-slate-600 bg-white/[0.04] border border-white/[0.06] px-2 py-0.5 rounded-full whitespace-nowrap ml-3 mt-0.5">
-            {project.category === "ai-ml"
-              ? "AI / ML"
-              : project.category === "games"
-              ? "Games"
-              : "Full Stack"}
-          </span>
         </div>
 
-        {/* Description */}
         <p className="text-sm text-slate-400 mb-5 leading-relaxed flex-1 line-clamp-3">
           {project.description}
         </p>
 
-        {/* Tech Pills */}
+        {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-1.5 mb-6">
           {project.techStack.map((tech) => {
             const Icon = techIconMap[tech];
             return (
               <span key={tech} className="pill">
-                {Icon && <Icon size={11} />}
+                {Icon && <Icon size={12} />}
                 {tech}
               </span>
             );
           })}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-2 mt-auto">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${project.title} GitHub repository`}
-            className="flex items-center gap-1.5 rounded-md border border-white/[0.08] px-3.5 py-2 text-xs font-medium text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.04] transition-all duration-200"
+        {/* Action Buttons */}
+        <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/[0.06] mt-auto">
+          <button
+            onClick={onOpenModal}
+            className="text-xs text-blue-400 font-medium hover:text-blue-300 flex items-center gap-1 transition-colors"
           >
-            <FaGithub size={13} />
-            Source
-          </a>
-          {project.liveUrl ? (
+            Details & Features &rarr;
+          </button>
+
+          <div className="flex items-center gap-2">
             <a
-              href={project.liveUrl}
+              href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${project.title} live demo`}
-              className="flex items-center gap-1.5 rounded-md border border-blue-500/30 bg-blue-500/[0.08] px-3.5 py-2 text-xs font-medium text-blue-400 hover:text-white hover:bg-blue-500/20 transition-all duration-200"
+              aria-label={`${project.title} GitHub repository`}
+              className="p-2 rounded-lg border border-white/[0.08] text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05] transition-all"
             >
-              <ExternalLink size={13} />
-              Live Demo
+              <FaGithub size={15} />
             </a>
-          ) : null}
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title} live demo`}
+                className="p-2 rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-400 hover:text-white hover:bg-blue-600 transition-all"
+              >
+                <ExternalLink size={15} />
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     </motion.article>

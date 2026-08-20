@@ -38,6 +38,7 @@ export interface Project {
   features: string[];
   github: string;
   liveUrl?: string;
+  image?: string;
   category: "fullstack" | "frontend" | "ai-ml" | "games";
 }
 
@@ -126,6 +127,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/satyam18x/Bulls-Cows",
     liveUrl: "",
+    image: "/bulls-cows.png",
     category: "games",
   },
   {
@@ -141,6 +143,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/satyam18x/DataTrustX-AI-",
     liveUrl: "",
+    image: "/datatrustx.png",
     category: "ai-ml",
   },
   {
@@ -156,6 +159,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/satyam18x/Burn-IT-NxT",
     liveUrl: "",
+    image: "/burn-it-nxt.png",
     category: "fullstack",
   },
   {
@@ -171,6 +175,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/satyam18x/ShopEZ-E-commerce-Application",
     liveUrl: "",
+    image: "/shopez.png",
     category: "fullstack",
   },
 ];
