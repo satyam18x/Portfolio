@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ChevronDown, Code, ArrowUpRight, FileText } from "lucide-react";
-import { FaGithub, FaLinkedin, FaInstagram, FaXTwitter, FaTelegram } from "react-icons/fa6";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { personalInfo } from "@/data/portfolio";
@@ -14,14 +13,6 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function Hero() {
-  const socialLinks = [
-    { icon: FaXTwitter, href: personalInfo.twitter || "https://x.com", label: "X / Twitter" },
-    { icon: FaGithub, href: personalInfo.github, label: "GitHub" },
-    { icon: FaLinkedin, href: personalInfo.linkedin, label: "LinkedIn" },
-    { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
-  ];
-
   return (
     <section
       id="home"
@@ -59,116 +50,64 @@ export default function Hero() {
         <div className="absolute bottom-10 left-1/3 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-        {/* ── Left Social Vertical Sidebar (Desktop) ── */}
-        <motion.div
-          {...fadeUp(0.1)}
-          className="hidden md:flex lg:flex flex-col items-center gap-6 pr-4 lg:pr-8 border-r border-white/5"
-        >
-          {socialLinks.map((s, idx) => (
-            <motion.a
-              key={idx}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={s.label}
-              whileHover={{ scale: 1.15, x: 2 }}
-              className="text-slate-400 hover:text-cyan-400 transition-colors p-1"
-            >
-              <s.icon size={20} />
-            </motion.a>
-          ))}
-        </motion.div>
-
+      <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
         {/* ── Main Content Area (Text) ── */}
-        <div className="flex-1 text-left">
+        <div className="flex-1 text-left max-w-3xl lg:max-w-4xl">
           <motion.p
-            {...fadeUp(0.15)}
-            className="text-base sm:text-lg font-medium text-slate-300 mb-2 tracking-wide"
+            {...fadeUp(0.1)}
+            className="text-lg sm:text-xl font-normal text-slate-300 mb-3 tracking-wide"
           >
             Hi, I&apos;m
           </motion.p>
 
           <motion.h1
-            {...fadeUp(0.25)}
-            className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-6"
+            {...fadeUp(0.2)}
+            className="text-6xl sm:text-7xl lg:text-[5.25rem] font-bold text-white tracking-tight leading-[1.04] mb-8"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {personalInfo.name}
           </motion.h1>
 
           <motion.p
-            {...fadeUp(0.35)}
-            className="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-2xl mb-4 font-normal"
+            {...fadeUp(0.3)}
+            className="text-lg sm:text-xl lg:text-[1.28rem] text-slate-200/95 leading-[1.8] sm:leading-[1.85] mb-7 sm:mb-9 font-normal"
           >
-            an India-based software engineer and Full Stack Developer helping businesses grow by
-            building secure scalable applications, backend systems, and cloud infrastructure for modern
-            products. My work focuses on{" "}
+            a Jabalpur-based full-stack developer and Computer Science undergrad building fast, scalable web applications with the MERN stack and TypeScript. My work focuses on{" "}
             <span className="text-cyan-400 font-semibold underline decoration-cyan-500/30 decoration-2 underline-offset-4">
-              performance, reliability, security, and scalability
+              clean architecture, performance, and production-ready delivery
             </span>{" "}
-            — from MERN stack architecture and REST API development to database optimization,
-            cloud workflows, and production deployment.
+            — from designing REST APIs and integrating databases to building responsive interfaces and shipping full-stack apps end-to-end.
           </motion.p>
 
           <motion.p
-            {...fadeUp(0.45)}
-            className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mb-8"
+            {...fadeUp(0.4)}
+            className="text-base sm:text-lg lg:text-[1.12rem] text-slate-400 leading-[1.8] mb-10 sm:mb-12 font-normal"
           >
-            Full stack engineer helping ideas become stable, production-ready systems that scale with
-            business growth.
+            Full stack engineer helping ideas become stable, production-ready systems that scale with business growth.
           </motion.p>
 
           {/* ── Action Buttons ── */}
           <motion.div
-            {...fadeUp(0.55)}
-            className="flex flex-wrap items-center gap-4 pt-1"
+            {...fadeUp(0.5)}
+            className="flex flex-wrap items-center gap-5 sm:gap-6 pt-2"
           >
             <Link
               href="/#contact"
-              className="group inline-flex items-center gap-2.5 bg-zinc-900/90 hover:bg-zinc-800 text-white font-medium text-sm px-6 py-3 rounded-xl border border-white/10 hover:border-cyan-400/50 transition-all duration-200 shadow-lg shadow-black/40 hover:shadow-cyan-500/10"
+              className="group inline-flex items-center gap-3 bg-zinc-900/95 hover:bg-zinc-800 text-white font-semibold text-base px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl border border-white/15 hover:border-cyan-400/60 transition-all duration-200 shadow-xl shadow-black/50 hover:shadow-cyan-500/15"
             >
-              <span>Get in Touch</span>
-              <span className="text-cyan-400 text-xs font-mono bg-cyan-950/60 border border-cyan-500/30 px-1.5 py-0.5 rounded">
+              <span>Reach out</span>
+              <span className="text-cyan-400 text-xs font-mono bg-cyan-950/70 border border-cyan-500/40 px-2 py-0.5 rounded">
                 &lt;/&gt;
               </span>
             </Link>
 
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-slate-300 hover:text-white font-medium text-sm px-5 py-3 rounded-xl border border-white/5 hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+              className="inline-flex items-center gap-2.5 text-slate-200 hover:text-white font-medium text-base px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl border border-white/10 hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.07] transition-all"
             >
               <span>View Projects</span>
-              <ArrowUpRight size={16} className="text-slate-400" />
+              <ArrowUpRight size={18} className="text-slate-400 group-hover:text-white transition-colors" />
             </Link>
-
-            <a
-              href="/resume.pdf"
-              download="Satyam_Haldkar_Resume.pdf"
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-300 font-medium text-sm px-4 py-3 transition-colors"
-            >
-              <FileText size={15} />
-              <span>Resume</span>
-            </a>
-          </motion.div>
-
-          {/* ── Mobile Social Bar ── */}
-          <motion.div
-            {...fadeUp(0.65)}
-            className="flex md:hidden items-center gap-5 mt-8 pt-6 border-t border-white/10"
-          >
-            {socialLinks.map((s, idx) => (
-              <a
-                key={idx}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="text-slate-400 hover:text-cyan-400 transition-colors p-1"
-              >
-                <s.icon size={19} />
-              </a>
-            ))}
           </motion.div>
         </div>
 
