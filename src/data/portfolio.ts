@@ -115,22 +115,6 @@ export const education: Education[] = [
 // ---- Projects ----
 export const projects: Project[] = [
   {
-    title: "Bulls & Cows",
-    description:
-      "A real-time offline multiplayer number guessing game built with React Native and TypeScript. Operates over local WiFi/hotspot via zero-config TCP server auto-discovery.",
-    techStack: ["React Native", "TypeScript", "Node.js"],
-    features: [
-      "Real-time multiplayer over local WiFi / hotspot",
-      "Zero-config TCP auto-discovery via mDNS",
-      "Custom game engine & TCP server implementation",
-      "Live guess history & offline gameplay",
-    ],
-    github: "https://github.com/satyam18x/Bulls-Cows",
-    liveUrl: "",
-    image: "/bulls-cows.png",
-    category: "games",
-  },
-  {
     title: "DataTrustX-AI",
     description:
       "A synthetic data marketplace with a responsive React frontend integrated with a FastAPI backend. Handles Python-based ML models and data validation for secure data processing.",
@@ -161,6 +145,22 @@ export const projects: Project[] = [
     liveUrl: "",
     image: "/burn-it-nxt.png",
     category: "fullstack",
+  },
+  {
+    title: "Bulls & Cows",
+    description:
+      "A real-time offline multiplayer number guessing game built with React Native and TypeScript. Operates over local WiFi/hotspot via zero-config TCP server auto-discovery.",
+    techStack: ["React Native", "TypeScript", "Node.js"],
+    features: [
+      "Real-time multiplayer over local WiFi / hotspot",
+      "Zero-config TCP auto-discovery via mDNS",
+      "Custom game engine & TCP server implementation",
+      "Live guess history & offline gameplay",
+    ],
+    github: "https://github.com/satyam18x/Bulls-Cows",
+    liveUrl: "",
+    image: "/bulls-cows.png",
+    category: "games",
   },
   {
     title: "ShopEZ",
