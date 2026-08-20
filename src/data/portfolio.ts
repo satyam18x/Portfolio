@@ -212,19 +212,19 @@ export const achievements: Achievement[] = [
     title: "Under Officer — National Cadet Corps (NCC)",
     event: "NCC",
     date: "Sep 2023 – Feb 2026",
-    image: "/achievements/ncc.jpg",
+    image: "/achievements/ncc.png",
   },
   {
     title: "Code-Nakshatra II",
     event: "National Level Hackathon — Greater Noida",
     date: "May 2026",
-    image: "/achievements/code-nakshatra.jpg",
+    image: "/achievements/code-nakshatra.png",
   },
   {
     title: "HackCrux",
     event: "National Level Hackathon — LNMIIT, Jaipur",
     date: "May 2025",
-    image: "/achievements/hackcrux.jpg",
+    image: "/achievements/hackcrux.png",
   },
 ];
 
