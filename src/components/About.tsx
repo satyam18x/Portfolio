@@ -2,15 +2,10 @@
 
 import { motion } from "framer-motion";
 import {
-  Award,
-  BadgeCheck,
-} from "lucide-react";
-import {
   personalInfo,
-  achievements,
-  certifications,
   stats,
 } from "@/data/portfolio";
+import TechStack from "@/components/TechStack";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -57,7 +52,7 @@ export default function About() {
 
         {/* ── Stats Row ── */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
@@ -80,73 +75,8 @@ export default function About() {
           ))}
         </motion.div>
 
-
-
-        {/* ── Achievements & Certifications ── */}
-        <div className="grid lg:grid-cols-2 gap-10">
-
-          {/* Achievements */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-amber-500/10 text-amber-400">
-                <Award size={16} />
-              </div>
-              <h2
-                className="text-xl font-bold"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Achievements
-              </h2>
-            </div>
-            <div className="space-y-3">
-              {achievements.map((ach, i) => (
-                <div key={i} className="card p-4 hover:border-amber-500/25">
-                  <h3 className="font-semibold text-white text-sm mb-2">{ach.title}</h3>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-500">{ach.event}</span>
-                    <span className="text-amber-400 font-medium">{ach.date}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Certifications */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={fadeUp}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-500/10 text-emerald-400">
-                <BadgeCheck size={16} />
-              </div>
-              <h2
-                className="text-xl font-bold"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Certifications
-              </h2>
-            </div>
-            <div className="space-y-3">
-              {certifications.map((cert, i) => (
-                <div key={i} className="card p-4 hover:border-emerald-500/25">
-                  <h3 className="font-semibold text-white text-sm mb-2">{cert.title}</h3>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-emerald-400 font-medium">{cert.issuer}</span>
-                    <span className="text-slate-500">{cert.date}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+        {/* ── Tech Stack ── */}
+        <TechStack />
 
       </div>
     </section>

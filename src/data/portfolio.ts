@@ -54,11 +54,6 @@ export interface Achievement {
   date: string;
 }
 
-export interface Certification {
-  title: string;
-  issuer: string;
-  date: string;
-}
 
 // ---- Personal Info ----
 export const personalInfo: PersonalInfo = {
@@ -228,34 +223,6 @@ export const achievements: Achievement[] = [
   },
 ];
 
-// ---- Certifications ----
-export const certifications: Certification[] = [
-  {
-    title: "AWS Academy Graduate - Cloud Foundations",
-    issuer: "Amazon Web Services (AWS)",
-    date: "Apr 2026",
-  },
-  {
-    title: "Experimental Learning - MERN",
-    issuer: "FutureSkills Prime",
-    date: "Mar 2026",
-  },
-  {
-    title: "Pre-Placement Training (3P)",
-    issuer: "Titans Learning Pvt. Ltd.",
-    date: "Feb 2026",
-  },
-  {
-    title: "AI Foundations Associate",
-    issuer: "Oracle",
-    date: "Oct 2025",
-  },
-  {
-    title: "AIML Virtual Internship",
-    issuer: "EduSkills Foundation",
-    date: "Jul 2024",
-  },
-];
 
 // ---- Navigation Links ----
 export const navLinks = [
@@ -269,7 +236,6 @@ export const navLinks = [
 // ---- Stats ----
 export const stats = [
   { label: "Projects Built", value: "4+" },
-  { label: "Certifications", value: "5" },
   { label: "CGPA", value: "8.20" },
   { label: "Hackathons", value: "3+" },
 ];
