@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
 @import "tailwindcss";
 
 /* ====================
@@ -22,6 +23,7 @@
   --font-display: var(--font-space-grotesk), 'Space Grotesk', system-ui, sans-serif;
   --font-body: var(--font-inter), 'Inter', system-ui, sans-serif;
   --font-code: var(--font-mono), 'JetBrains Mono', 'Fira Code', monospace;
+  --font-handwritten: 'Covered By Your Grace', cursive, sans-serif;
 
   /* Hero Editor Theme */
   --bg-ink: #0B0F14;

@@ -135,10 +135,11 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
-            className="text-xl font-bold gradient-text cursor-pointer"
+            className="text-3xl sm:text-4xl font-normal text-white hover:text-cyan-400 transition-colors cursor-pointer tracking-wide leading-none"
+            style={{ fontFamily: "var(--font-handwritten), 'Covered By Your Grace', cursive" }}
             aria-label="Home"
           >
-            {"<SH />"}
+            Satyam
           </Link>
 
           {/* Desktop Navigation */}
