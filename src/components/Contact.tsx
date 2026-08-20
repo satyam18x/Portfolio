@@ -57,7 +57,7 @@ export default function Contact() {
           {/* Eyebrow */}
           <motion.p
             variants={fadeUp}
-            className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-3"
+            className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-3"
           >
             Get in Touch
           </motion.p>
@@ -65,7 +65,7 @@ export default function Contact() {
           {/* Heading */}
           <motion.h2
             variants={fadeUp}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight text-white"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Let&apos;s Work Together
@@ -75,7 +75,7 @@ export default function Contact() {
           <motion.div variants={fadeUp} className="mb-8">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="group inline-flex items-center gap-2.5 bg-blue-500 hover:bg-blue-400 text-white rounded-xl px-7 py-3.5 text-sm font-semibold transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
+              className="group inline-flex items-center gap-2.5 bg-cyan-500 hover:bg-cyan-400 text-zinc-950 rounded-xl px-7 py-3.5 text-sm font-semibold transition-all duration-200 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40"
             >
               <Mail size={17} />
               Say Hello
@@ -103,9 +103,9 @@ export default function Contact() {
               rel={isExternal ? "noopener noreferrer" : undefined}
               variants={fadeUp}
               whileHover={{ y: -2, transition: { duration: 0.15 } }}
-              className="flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl border border-white/[0.08] text-slate-300 hover:text-white hover:border-blue-500/40 hover:bg-blue-500/[0.06] text-xs sm:text-sm font-medium transition-all duration-200"
+              className="flex items-center gap-2.5 px-4.5 py-2.5 rounded-xl border border-white/[0.08] text-slate-300 hover:text-white hover:border-cyan-500/40 hover:bg-cyan-500/[0.06] text-xs sm:text-sm font-medium transition-all duration-200"
             >
-              <Icon size={15} className="text-blue-400 flex-shrink-0" />
+              <Icon size={15} className="text-cyan-400 flex-shrink-0" />
               <span>{label}</span>
             </motion.a>
           ))}

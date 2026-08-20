@@ -28,13 +28,13 @@ export default function Experience() {
         >
           <motion.p
             variants={fadeUp}
-            className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-4"
+            className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-4"
           >
             My Journey
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl sm:text-5xl font-bold mb-4"
+            className="text-4xl sm:text-5xl font-bold mb-4 text-white"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Work Experience
@@ -60,19 +60,19 @@ export default function Experience() {
               <motion.div
                 key={i}
                 whileHover={{ y: -3, transition: { duration: 0.15 } }}
-                className="card p-6 sm:p-8 border border-white/[0.08] hover:border-blue-500/30 transition-all duration-300"
+                className="card p-6 sm:p-8 border border-white/[0.08] hover:border-cyan-500/40 bg-zinc-950/60 shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 rounded-2xl"
               >
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-blue-500/10 text-blue-400">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400">
                       <Briefcase size={18} />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white">{exp.role}</h3>
-                      <span className="text-sm text-blue-400 font-semibold">{exp.company}</span>
+                      <span className="text-sm text-cyan-400 font-semibold">{exp.company}</span>
                     </div>
                   </div>
-                  <span className="text-xs text-blue-400 font-medium bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full w-fit">
+                  <span className="text-xs text-amber-400 font-semibold bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full w-fit">
                     {exp.duration}
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export default function Experience() {
                 <ul className="space-y-2.5 pl-12">
                   {exp.points.map((point, j) => (
                     <li key={j} className="text-sm text-slate-300 flex items-start gap-2.5 leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
                       <span>{point}</span>
                     </li>
                   ))}

@@ -90,10 +90,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 20 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto z-10 rounded-2xl bg-[#0b0f19] border border-white/10 shadow-2xl shadow-blue-500/10 flex flex-col"
+          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto z-10 rounded-2xl bg-[#090d18] border border-white/10 shadow-2xl shadow-cyan-500/10 flex flex-col"
         >
           {/* Top Browser Bar */}
-          <div className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[#080b14]/90 backdrop-blur-md border-b border-white/[0.08]">
+          <div className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 bg-[#060913]/90 backdrop-blur-md border-b border-white/[0.08]">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
@@ -127,15 +127,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
               ) : (
-                <div className="w-full h-full p-8 bg-gradient-to-br from-blue-950/40 via-slate-900 to-purple-950/40 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <div className="w-full h-full p-8 bg-gradient-to-br from-slate-900 via-cyan-950/30 to-slate-950 flex flex-col items-center justify-center text-center relative overflow-hidden">
                   {/* Decorative background grid */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d415_1px,transparent_1px),linear-gradient(to_bottom,#06b6d415_1px,transparent_1px)] bg-[size:2rem_2rem]" />
                   <div className="relative z-10 space-y-3">
-                    <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto text-blue-400 shadow-lg shadow-blue-500/10">
+                    <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto text-cyan-400 shadow-lg shadow-cyan-500/10">
                       <Terminal size={32} />
                     </div>
                     <h3 className="text-2xl font-bold text-white tracking-tight">{project.title}</h3>
-                    <p className="text-xs text-blue-400/80 font-mono uppercase tracking-widest">
+                    <p className="text-xs text-cyan-400/80 font-mono uppercase tracking-widest">
                       {project.category} Project
                     </p>
                   </div>
@@ -149,7 +149,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)" }}>
                   {project.title}
                 </h2>
-                <p className="text-xs text-slate-400 font-mono">Category: <span className="text-blue-400 capitalize">{project.category}</span></p>
+                <p className="text-xs text-slate-400 font-mono">Category: <span className="text-cyan-400 font-semibold capitalize">{project.category}</span></p>
               </div>
 
               <div className="flex items-center gap-3">
@@ -157,7 +157,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-sm font-medium text-white transition-all"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-sm font-medium text-white transition-all"
                 >
                   <FaGithub size={16} />
                   <span>GitHub</span>
@@ -167,7 +167,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm font-medium text-white shadow-lg shadow-blue-500/25 transition-all"
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-sm font-semibold text-zinc-950 shadow-lg shadow-cyan-500/25 transition-all"
                   >
                     <ExternalLink size={16} />
                     <span>Live Website</span>
@@ -206,7 +206,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   return (
                     <span
                       key={tech}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-500/10 border border-blue-500/20 text-blue-300"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-cyan-500/10 border border-cyan-500/20 text-cyan-300"
                     >
                       {Icon && <Icon size={14} />}
                       {tech}

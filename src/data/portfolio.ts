@@ -24,13 +24,6 @@ export interface Experience {
   points: string[];
 }
 
-export interface Education {
-  institution: string;
-  degree: string;
-  year: string;
-  grade: string;
-}
-
 export interface Project {
   title: string;
   description: string;
@@ -87,28 +80,6 @@ export const experiences: Experience[] = [
   },
 ];
 
-// ---- Education ----
-export const education: Education[] = [
-  {
-    institution: "Baderia Global Institute of Engineering",
-    degree: "B.Tech — Computer Science & Engineering",
-    year: "2023 – 2027",
-    grade: "CGPA: 8.20",
-  },
-  {
-    institution: "Pt L.S Jha Govt. Model Excellence School",
-    degree: "Class 12th",
-    year: "2023",
-    grade: "81.2%",
-  },
-  {
-    institution: "Pt L.S Jha Govt. Model Excellence School",
-    degree: "Class 10th",
-    year: "2021",
-    grade: "94%",
-  },
-];
-
 // ---- Projects ----
 export const projects: Project[] = [
   {
@@ -156,7 +127,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/satyam18x/Bulls-Cows",
     liveUrl: "",
-    image: "/bulls-cows.png",
+    image: "/bulls-cows.jpeg",
     category: "games",
   },
   {
@@ -209,10 +180,10 @@ export const skills: Skill[] = [
 // ---- Achievements ----
 export const achievements: Achievement[] = [
   {
-    title: "Under Officer — National Cadet Corps (NCC)",
-    event: "NCC",
-    date: "Sep 2023 – Feb 2026",
-    image: "/achievements/ncc.png",
+    title: "HackCrux",
+    event: "National Level Hackathon — LNMIIT, Jaipur",
+    date: "May 2025",
+    image: "/achievements/hackcrux.png",
   },
   {
     title: "Code-Nakshatra II",
@@ -221,10 +192,10 @@ export const achievements: Achievement[] = [
     image: "/achievements/code-nakshatra.png",
   },
   {
-    title: "HackCrux",
-    event: "National Level Hackathon — LNMIIT, Jaipur",
-    date: "May 2025",
-    image: "/achievements/hackcrux.png",
+    title: "Under Officer — National Cadet Corps (NCC)",
+    event: "NCC 1 MP ARMD SQN",
+    date: "Sep 2023 – Feb 2026",
+    image: "/achievements/ncc.png",
   },
 ];
 

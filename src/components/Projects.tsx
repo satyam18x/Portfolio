@@ -67,11 +67,11 @@ export default function Projects() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-4">
             Featured Works & Applications
           </p>
           <h1
-            className="text-4xl sm:text-5xl font-bold mb-4"
+            className="text-4xl sm:text-5xl font-bold mb-4 text-white"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Featured Projects
@@ -97,8 +97,8 @@ export default function Projects() {
               className={cn(
                 "px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
                 activeFilter === f.id
-                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-400/30"
-                  : "border border-white/[0.08] bg-white/[0.02] text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05]"
+                  ? "bg-cyan-500 text-zinc-950 font-semibold shadow-lg shadow-cyan-500/20 border border-cyan-400/30"
+                  : "border border-white/[0.08] bg-zinc-950/40 text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05]"
               )}
             >
               {f.label}
@@ -169,7 +169,7 @@ function ProjectCard({
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay: index * 0.08 }}
       whileHover={{ y: -6, transition: { duration: 0.2 } }}
-      className="group flex flex-col rounded-2xl bg-[#090d16] border border-white/[0.08] hover:border-blue-500/40 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden transition-all duration-300"
+      className="group flex flex-col rounded-2xl bg-zinc-950/80 border border-white/[0.08] hover:border-cyan-500/40 shadow-xl hover:shadow-2xl hover:shadow-cyan-500/10 overflow-hidden transition-all duration-300"
     >
       {/* Top accent line */}
       <div className="h-[3px] flex-shrink-0" style={{ background: topColor }} />
@@ -184,7 +184,7 @@ function ProjectCard({
         <span className="text-[11px] font-mono text-slate-500 tracking-wide truncate max-w-[200px]">
           {project.title.toLowerCase().replace(/[^a-z0-9]/g, "")}.app
         </span>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 bg-white/[0.05] border border-white/[0.08] px-2 py-0.5 rounded-md">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-md">
           {project.category === "ai-ml"
             ? "AI / ML"
             : project.category === "games"
@@ -208,13 +208,13 @@ function ProjectCard({
           />
         ) : (
           /* Fallback visual preview card with styled gradient & code background */
-          <div className="w-full h-full p-6 bg-gradient-to-br from-slate-900 via-blue-950/30 to-purple-950/30 flex flex-col justify-between relative overflow-hidden group-hover/img:from-blue-950/50 transition-colors duration-500">
-            <div className="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
+          <div className="w-full h-full p-6 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-950 flex flex-col justify-between relative overflow-hidden group-hover/img:from-cyan-950/40 transition-colors duration-500">
+            <div className="absolute inset-0 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px] opacity-15" />
             <div className="relative z-10 flex items-center justify-between">
-              <div className="p-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
+              <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
                 <Terminal size={24} />
               </div>
-              <span className="text-xs font-mono text-blue-400/80 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20">
+              <span className="text-xs font-mono text-cyan-400/80 bg-cyan-500/10 px-2.5 py-1 rounded-md border border-cyan-500/20">
                 Preview Ready
               </span>
             </div>
@@ -230,7 +230,7 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <button
             onClick={onOpenModal}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/90 text-white font-medium text-xs shadow-lg backdrop-blur-md transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-blue-500"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-zinc-950 font-semibold text-xs shadow-lg backdrop-blur-md transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-cyan-400"
           >
             <Maximize2 size={14} />
             <span>View Full Details & Screenshots</span>
@@ -243,7 +243,7 @@ function ProjectCard({
         <div className="flex items-start justify-between mb-3">
           <h2
             onClick={onOpenModal}
-            className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors leading-snug cursor-pointer"
+            className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug cursor-pointer"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {project.title}
@@ -271,7 +271,7 @@ function ProjectCard({
         <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/[0.06] mt-auto">
           <button
             onClick={onOpenModal}
-            className="text-xs text-blue-400 font-medium hover:text-blue-300 flex items-center gap-1 transition-colors"
+            className="text-xs text-cyan-400 font-medium hover:text-cyan-300 flex items-center gap-1 transition-colors cursor-pointer"
           >
             Details & Features &rarr;
           </button>
@@ -292,7 +292,7 @@ function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live demo`}
-                className="p-2 rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-400 hover:text-white hover:bg-blue-600 transition-all"
+                className="p-2 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:text-zinc-950 hover:bg-cyan-400 transition-all"
               >
                 <ExternalLink size={15} />
               </a>

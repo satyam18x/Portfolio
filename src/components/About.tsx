@@ -31,7 +31,7 @@ export default function About() {
         >
           <motion.p
             variants={fadeUp}
-            className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-4"
+            className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-4"
           >
             Who I Am
           </motion.p>

@@ -56,11 +56,11 @@ export default function TechStack() {
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.45 }}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-500 mb-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-3">
           Tools & Technologies
         </p>
         <h2
-          className="text-2xl sm:text-3xl font-bold"
+          className="text-2xl sm:text-3xl font-bold text-white"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Tech Stack
@@ -81,10 +81,10 @@ export default function TechStack() {
             onClick={() => setActiveCategory(cat.id)}
             suppressHydrationWarning
             className={cn(
-              "px-4 py-1.5 rounded-md text-xs font-medium transition-all duration-200",
+              "px-4 py-1.5 rounded-lg text-xs font-medium transition-all duration-200",
               activeCategory === cat.id
-                ? "bg-blue-500 text-white"
-                : "border border-white/[0.08] text-slate-500 hover:text-white hover:border-white/20"
+                ? "bg-cyan-500 text-zinc-950 font-semibold shadow-md shadow-cyan-500/20"
+                : "border border-white/[0.08] text-slate-400 hover:text-white hover:border-white/20 bg-zinc-950/40"
             )}
           >
             {cat.label}

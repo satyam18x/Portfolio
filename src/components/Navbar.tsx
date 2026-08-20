@@ -187,17 +187,18 @@ export default function Navbar() {
               download="Satyam_Haldkar_Resume.pdf"
               className="
                 flex items-center gap-2
-                rounded-full
-                bg-gradient-to-r from-blue-500 to-violet-500
+                rounded-xl
+                bg-zinc-900/90 hover:bg-zinc-800
+                border border-white/15 hover:border-cyan-400/60
                 px-5 py-2
                 text-sm font-semibold text-white
                 transition-all duration-300
-                hover:shadow-lg hover:shadow-blue-500/25
+                shadow-lg hover:shadow-cyan-500/15
               "
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
             >
-              <Download size={16} />
+              <Download size={15} className="text-cyan-400" />
               Resume
             </motion.a>
           </div>
@@ -308,14 +309,15 @@ export default function Navbar() {
                     delay: navLinks.length * 0.05,
                   }}
                   className="
-                    flex items-center gap-2
-                    rounded-lg
-                    bg-gradient-to-r from-blue-500 to-violet-500
+                    flex items-center gap-2.5
+                    rounded-xl
+                    bg-zinc-900/90
+                    border border-white/15
                     px-4 py-3
                     text-sm font-semibold text-white
                   "
                 >
-                  <Download size={16} />
+                  <Download size={16} className="text-cyan-400" />
                   Download Resume
                 </motion.a>
               </div>
