@@ -70,7 +70,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   const domainName = project.liveUrl
     ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
-    : `${project.title.toLowerCase().replace(/[^a-z0-9]/g, "")}.dev`;
+    : project.title;
 
   return (
     <AnimatePresence>
@@ -115,7 +115,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Modal Content */}
-          <div className="p-6 sm:p-8 space-y-6">
+          <div className="p-6 sm:p-8 md:p-10 space-y-7">
             {/* Image Preview / Graphic Frame */}
             <div className="relative rounded-xl overflow-hidden border border-white/[0.08] bg-slate-900 group aspect-video sm:aspect-[21/9] flex items-center justify-center">
               {imgSrc && !imgError ? (
@@ -134,8 +134,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto text-cyan-400 shadow-lg shadow-cyan-500/10">
                       <Terminal size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-white tracking-tight">{project.title}</h3>
-                    <p className="text-xs text-cyan-400/80 font-mono uppercase tracking-widest">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">{project.title}</h3>
+                    <p className="text-sm text-cyan-400/90 font-mono uppercase tracking-widest">
                       {project.category} Project
                     </p>
                   </div>
@@ -144,12 +144,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* Title & Category */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-4">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/[0.08] pb-5">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)" }}>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1.5 tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
                   {project.title}
                 </h2>
-                <p className="text-xs text-slate-400 font-mono">Category: <span className="text-cyan-400 font-semibold capitalize">{project.category}</span></p>
+                <p className="text-sm text-slate-400 font-mono">Category: <span className="text-cyan-400 font-semibold capitalize">{project.category}</span></p>
               </div>
 
               <div className="flex items-center gap-3">
@@ -157,9 +157,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-sm font-medium text-white transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-sm sm:text-base font-medium text-white transition-all"
                 >
-                  <FaGithub size={16} />
+                  <FaGithub size={18} />
                   <span>GitHub</span>
                 </a>
                 {project.liveUrl ? (
@@ -167,9 +167,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-sm font-semibold text-zinc-950 shadow-lg shadow-cyan-500/25 transition-all"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-sm sm:text-base font-semibold text-zinc-950 shadow-lg shadow-cyan-500/25 transition-all"
                   >
-                    <ExternalLink size={16} />
+                    <ExternalLink size={18} />
                     <span>Live Website</span>
                   </a>
                 ) : null}
@@ -178,19 +178,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Description */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Overview</h4>
-              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">{project.description}</p>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-2.5">Overview</h4>
+              <p className="text-slate-200 leading-relaxed text-base sm:text-lg">{project.description}</p>
             </div>
 
             {/* Key Features */}
             {project.features && project.features.length > 0 && (
               <div>
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Key Features & Architecture</h4>
-                <div className="grid sm:grid-cols-2 gap-2.5">
+                <h4 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-3.5">Key Features & Architecture</h4>
+                <div className="grid sm:grid-cols-2 gap-3">
                   {project.features.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                      <CheckCircle2 size={16} className="text-emerald-400 shrink-0 mt-0.5" />
-                      <span className="text-xs sm:text-sm text-slate-300">{feat}</span>
+                    <div key={idx} className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                      <CheckCircle2 size={18} className="text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="text-sm sm:text-base text-slate-300 leading-snug">{feat}</span>
                     </div>
                   ))}
                 </div>
@@ -199,16 +199,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Tech Stack */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Tech Stack Used</h4>
-              <div className="flex flex-wrap gap-2">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-cyan-400 mb-3.5">Tech Stack Used</h4>
+              <div className="flex flex-wrap gap-2.5">
                 {project.techStack.map((tech) => {
                   const Icon = techIconMap[tech];
                   return (
                     <span
                       key={tech}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-cyan-500/10 border border-cyan-500/20 text-cyan-300"
+                      className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-sm font-medium bg-cyan-500/10 border border-cyan-500/20 text-cyan-300"
                     >
-                      {Icon && <Icon size={14} />}
+                      {Icon && <Icon size={16} />}
                       {tech}
                     </span>
                   );

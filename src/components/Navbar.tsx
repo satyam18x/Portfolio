@@ -143,7 +143,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1.5">
             {navLinks.map((link) => {
               const isActive = isLinkActive(link.href);
 
@@ -153,11 +153,11 @@ export default function Navbar() {
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium",
+                    "relative px-4.5 py-2 text-base font-medium",
                     "rounded-lg transition-colors duration-300",
                     isActive
-                      ? "text-white"
-                      : "text-slate-400 hover:text-white"
+                      ? "text-white font-semibold"
+                      : "text-slate-300 hover:text-white"
                   )}
                 >
                   {isActive && (
@@ -190,15 +190,15 @@ export default function Navbar() {
                 rounded-xl
                 bg-zinc-900/90 hover:bg-zinc-800
                 border border-white/15 hover:border-cyan-400/60
-                px-5 py-2
-                text-sm font-semibold text-white
+                px-5 py-2.5
+                text-sm sm:text-base font-semibold text-white
                 transition-all duration-300
                 shadow-lg hover:shadow-cyan-500/15
               "
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
             >
-              <Download size={15} className="text-cyan-400" />
+              <Download size={16} className="text-cyan-400" />
               Resume
             </motion.a>
           </div>
@@ -279,12 +279,12 @@ export default function Navbar() {
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
                         className={cn(
-                          "block rounded-lg px-4 py-3",
-                          "text-sm font-medium",
+                          "block rounded-lg px-4 py-3.5",
+                          "text-base font-medium",
                           "transition-colors duration-300",
                           isActive
-                            ? "bg-white/10 text-white"
-                            : "text-slate-400 hover:bg-white/5 hover:text-white"
+                            ? "bg-white/10 text-white font-semibold"
+                            : "text-slate-300 hover:bg-white/5 hover:text-white"
                         )}
                       >
                         {link.name}
@@ -309,15 +309,15 @@ export default function Navbar() {
                     delay: navLinks.length * 0.05,
                   }}
                   className="
-                    flex items-center gap-2.5
+                    flex items-center gap-3
                     rounded-xl
                     bg-zinc-900/90
                     border border-white/15
-                    px-4 py-3
-                    text-sm font-semibold text-white
+                    px-4.5 py-3.5
+                    text-base font-semibold text-white
                   "
                 >
-                  <Download size={16} className="text-cyan-400" />
+                  <Download size={18} className="text-cyan-400" />
                   Download Resume
                 </motion.a>
               </div>

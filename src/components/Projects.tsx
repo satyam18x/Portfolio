@@ -56,8 +56,48 @@ export default function Projects() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" aria-label="Projects">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 py-20 lg:py-28">
+    <section id="projects" aria-label="Projects" className="relative overflow-hidden bg-[#050811] text-white">
+      {/* ── Perspective 3D Wireframe Mesh & Glow Background ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
+        <svg
+          className="absolute w-[200%] h-[200%] -left-[50%] -top-[30%] stroke-cyan-500/20"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,360 Q300,190 600,360 T1200,360 M0,430 Q300,260 600,430 T1200,430 M0,500 Q300,330 600,500 T1200,500 M0,570 Q300,400 600,570 T1200,570"
+            strokeWidth="0.75"
+          />
+          <path
+            d="M250,120 Q450,440 650,770 M500,100 Q700,420 900,770 M750,90 Q950,400 1150,770"
+            strokeWidth="0.75"
+          />
+        </svg>
+
+        {/* Ambient floating glow highlights */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.12, 0.22, 0.12],
+            x: [0, 25, 0],
+          }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -right-10 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.25, 1],
+            opacity: [0.1, 0.2, 0.1],
+            y: [0, -25, 0],
+          }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -left-20 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8 lg:px-10 py-20 lg:py-28">
 
         {/* ── Section Header ── */}
         <motion.div
@@ -67,23 +107,23 @@ export default function Projects() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-4">
+          <p className="text-sm sm:text-base font-semibold uppercase tracking-[0.22em] text-cyan-400 mb-4">
             Featured Works & Applications
           </p>
           <h1
-            className="text-4xl sm:text-5xl font-bold mb-4 text-white"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-white tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
             Featured Projects
           </h1>
-          <p className="text-slate-400 text-base sm:text-lg max-w-xl leading-relaxed">
+          <p className="text-slate-300/90 text-lg sm:text-xl lg:text-[1.2rem] max-w-2xl leading-relaxed">
             Explore my latest web apps, AI systems, and interactive creations with live previews and technical breakdowns.
           </p>
         </motion.div>
 
         {/* ── Filter Tabs ── */}
         <motion.div
-          className="flex flex-wrap gap-2 mb-12"
+          className="flex flex-wrap gap-2.5 mb-12"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -95,10 +135,10 @@ export default function Projects() {
               onClick={() => setActiveFilter(f.id)}
               suppressHydrationWarning
               className={cn(
-                "px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
+                "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer",
                 activeFilter === f.id
                   ? "bg-cyan-500 text-zinc-950 font-semibold shadow-lg shadow-cyan-500/20 border border-cyan-400/30"
-                  : "border border-white/[0.08] bg-zinc-950/40 text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05]"
+                  : "border border-white/[0.08] bg-zinc-950/40 text-slate-300 hover:text-white hover:border-white/20 hover:bg-white/[0.05]"
               )}
             >
               {f.label}
@@ -175,16 +215,18 @@ function ProjectCard({
       <div className="h-[3px] flex-shrink-0" style={{ background: topColor }} />
 
       {/* Browser Frame Top Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/[0.06]">
+      <div className="flex items-center justify-between px-4 py-3 bg-white/[0.03] border-b border-white/[0.06]">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
           <span className="w-2.5 h-2.5 rounded-full bg-green-500/70 inline-block" />
         </div>
-        <span className="text-[11px] font-mono text-slate-500 tracking-wide truncate max-w-[200px]">
-          {project.title.toLowerCase().replace(/[^a-z0-9]/g, "")}.app
+        <span className="text-xs font-mono text-slate-400 tracking-wide truncate max-w-[200px]">
+          {project.liveUrl
+            ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
+            : project.title}
         </span>
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded-md">
+        <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2.5 py-0.5 rounded-md">
           {project.category === "ai-ml"
             ? "AI / ML"
             : project.category === "games"
@@ -230,37 +272,37 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <button
             onClick={onOpenModal}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500 text-zinc-950 font-semibold text-xs shadow-lg backdrop-blur-md transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-cyan-400"
+            className="flex items-center gap-2 px-4.5 py-2.5 rounded-xl bg-cyan-500 text-zinc-950 font-semibold text-xs sm:text-sm shadow-lg backdrop-blur-md transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 hover:bg-cyan-400 cursor-pointer"
           >
-            <Maximize2 size={14} />
+            <Maximize2 size={15} />
             <span>View Full Details & Screenshots</span>
           </button>
         </div>
       </div>
 
       {/* Project Content Body */}
-      <div className="flex flex-col flex-1 p-6">
+      <div className="flex flex-col flex-1 p-6 sm:p-7">
         <div className="flex items-start justify-between mb-3">
           <h2
             onClick={onOpenModal}
-            className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug cursor-pointer"
+            className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors leading-snug cursor-pointer tracking-tight"
             style={{ fontFamily: "var(--font-display)" }}
           >
             {project.title}
           </h2>
         </div>
 
-        <p className="text-sm text-slate-400 mb-5 leading-relaxed flex-1 line-clamp-3">
+        <p className="text-base text-slate-300/90 mb-5 leading-relaxed flex-1 line-clamp-3">
           {project.description}
         </p>
 
         {/* Tech Stack Pills */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
+        <div className="flex flex-wrap gap-2 mb-6">
           {project.techStack.map((tech) => {
             const Icon = techIconMap[tech];
             return (
-              <span key={tech} className="pill">
-                {Icon && <Icon size={12} />}
+              <span key={tech} className="pill text-xs font-medium px-3 py-1">
+                {Icon && <Icon size={13} />}
                 {tech}
               </span>
             );
@@ -268,23 +310,23 @@ function ProjectCard({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center justify-between gap-3 pt-3 border-t border-white/[0.06] mt-auto">
+        <div className="flex items-center justify-between gap-3 pt-4 border-t border-white/[0.06] mt-auto">
           <button
             onClick={onOpenModal}
-            className="text-xs text-cyan-400 font-medium hover:text-cyan-300 flex items-center gap-1 transition-colors cursor-pointer"
+            className="text-sm text-cyan-400 font-semibold hover:text-cyan-300 flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             Details & Features &rarr;
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${project.title} GitHub repository`}
-              className="p-2 rounded-lg border border-white/[0.08] text-slate-400 hover:text-white hover:border-white/20 hover:bg-white/[0.05] transition-all"
+              className="p-2.5 rounded-xl border border-white/[0.08] text-slate-300 hover:text-white hover:border-white/20 hover:bg-white/[0.05] transition-all"
             >
-              <FaGithub size={15} />
+              <FaGithub size={16} />
             </a>
             {project.liveUrl ? (
               <a
@@ -292,9 +334,9 @@ function ProjectCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} live demo`}
-                className="p-2 rounded-lg border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:text-zinc-950 hover:bg-cyan-400 transition-all"
+                className="p-2.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 hover:text-zinc-950 hover:bg-cyan-400 transition-all"
               >
-                <ExternalLink size={15} />
+                <ExternalLink size={16} />
               </a>
             ) : null}
           </div>
